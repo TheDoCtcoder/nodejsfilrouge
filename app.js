@@ -10,18 +10,20 @@ require('dotenv-flow').config();
 const {MESSAGE, NODE_ENV, PORT} = process.env;
 console.log('Lancé en ', NODE_ENV, ' : ', MESSAGE);
 const express = require('express');
+
+const router =require('./routes');
 const app = express();
 
 
 
-app.get('/Users', (req, res) => {
-    const data  = {
-        msg : 'Coucou'
-    }
-    res.json(data);
-})
+// app.get('/Users', (req, res) => {
+//     const data  = {
+//         msg : 'Coucou'
+//     }
+//     res.json(data);
+// })
 
-
+app.use('/api', router)
 
 
 app.listen(PORT, () => {
