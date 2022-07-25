@@ -5,10 +5,10 @@ const authRouter = require('./auth-router');
 
 const router = require('express').Router();
 
-router.use('/category', categoryRouter)
-router.use('/task', (req, res) => res.sendStatus(501))
-router.use('/user', userRouter)
-router.use('/auth', (req, res) => res.sendStatus(501))
+router.use('/category', categoryRouter);
+router.use('/task', taskRouter);
+router.use('/user', userRouter);
+router.use('/auth', authRouter);
 
 
 

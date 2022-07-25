@@ -1,45 +1,18 @@
-// const express = require('express');
-// const categoryRouter = express.Router();
+const express = require('express');
+const categoryRouter = express.Router();
 // ou
-const categoryRouter = require('express').Router();
+// const categoryRouter = require('express').Router();
+const categoryController = require('../controllers/category-controller');
+const idValidator = require('../middlewares/idValidator');
 
-categoryRouter.get('/', (req, res) => {
-console.log('Liste de toutes les catégories');
-res.sendStatus(501); //Erreur  => Fonctionnalité pas encore implémentée.
-
-})
-
-categoryRouter.get('/:id', (req,res) => {
-console.log('recupération de la catégorie d ont l id est : ' + req.params.id);
-res.sendStatus(501);
-})
-
-
-categoryRouter.post('/', (req,res) => {
-console.log('envoi d une nouvelle catégorie');
-res.sendStatus(501);
-})
-
-categoryRouter.put('/:id', (req,res) => {
-console.log('Modification de la catégorie dont l id est : ' + req.params.id);
-res.sendStatus(501);
-})
-
-categoryRouter.delete('/:id', (req,res) => {
-console.log('Suppression de la catégorie : ' + req.params.id);
-res.sendStatus(501);
-})
-
-
-
-
-
-
+categoryRouter.get('/', categoryController.getAll);
+categoryRouter.get('/:id',idValidator(), categoryController.getById);
+//Méthode post : Ajout d'un nouvel élément
+categoryRouter.post('/', categoryController.create);
+//Méthode put : Modification d'un élément en particulier
+categoryRouter.put('/:id',idValidator(), categoryController.update);
+//Méthode delete : Suppression d'un élément en particulier
+categoryRouter.delete('/:id',idValidator(), categoryController.delete);
 
 
 module.exports = categoryRouter;
-
-
-
-
-
