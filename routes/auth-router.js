@@ -1,19 +1,20 @@
 // const express = require('express');
 // const authRouter = express.Router();
+
+const authController = require('../controllers/auth-controller');
+const bodyValidation = require('../middlewares/body-validation');
+const { registerValidator } = require('../validators/auth-validator');
+
+
 // ou
 const authRouter = require('express').Router();
 
 
 
-authRouter.post('/login', (req,res) => {
-console.log('connexion d un utilisateur');
-res.sendStatus(501);
-})
+authRouter.post('/login', authController.login);
 
-authRouter.post('/register', (req,res) => {
-console.log('creation d un nouvel utilisateur');
-res.sendStatus(501);
-})
+
+authRouter.post('/register', bodyValidation(registerValidator), authController.register);
 
 
 

@@ -6,6 +6,7 @@ return (req, res, next) => {
     if( !mongoose.isValidObjectId(id))
     {
         res.sendStatus(400);
+        return;
     }
     next();
 }
