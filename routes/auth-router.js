@@ -3,7 +3,7 @@
 
 const authController = require('../controllers/auth-controller');
 const bodyValidation = require('../middlewares/body-validation');
-const { registerValidator } = require('../validators/auth-validator');
+const { registerValidator, loginValidator } = require('../validators/auth-validator');
 
 
 // ou
@@ -11,7 +11,7 @@ const authRouter = require('express').Router();
 
 
 
-authRouter.post('/login', authController.login);
+authRouter.post('/login', bodyValidation(loginValidator), authController.login);
 
 
 authRouter.post('/register', bodyValidation(registerValidator), authController.register);
