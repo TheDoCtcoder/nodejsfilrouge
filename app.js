@@ -9,7 +9,7 @@ require('dotenv-flow').config();
 const VNODE = process.versions.node;
 const {MESSAGE, NODE_ENV, PORT, DB_CONNECTION} = process.env;
 
-console.clear();
+// console.clear();
 console.log(MESSAGE + "\n");
 // console.log('Lancé en ', NODE_ENV, ' : ', MESSAGE);
 

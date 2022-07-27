@@ -12,6 +12,7 @@ const authRouter = require('express').Router();
 
 
 authRouter.post('/login', bodyValidation(loginValidator), authController.login);
+// authRouter.post('/login',  authController.login);
 
 
 authRouter.post('/register', bodyValidation(registerValidator), authController.register);

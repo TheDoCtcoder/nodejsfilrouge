@@ -12,7 +12,7 @@ const registerValidator = yup.object({
 
 
 const loginValidator = yup.object({
-    Credential : yup.string().trim().required().max(255),
+    credential : yup.string().trim().required().max(255),
     password : yup.string().required()
 });
 

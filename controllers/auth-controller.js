@@ -8,6 +8,7 @@ const argon2 = require('argon2');
 const authController = {
     login: async (req, res) => {
         const { credential, password } = req.body;
+        console.log(credential,password);
         const  credentialFilter = {$or : [{email : credential}, {pseudo : credential}]}
         const user = await User.findOne(credentialFilter);
         if (!user) {
