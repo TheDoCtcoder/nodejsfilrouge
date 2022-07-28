@@ -2,30 +2,35 @@
 // const taskRouter = express.Router();
 
 const taskController = require('../controllers/task-controller');
+const bodyValidation = require('../middlewares/body-validation');
+const idValidator = require('../middlewares/idValidator');
+const authentication = require('../middlewares/auth-jwt-middleware')
+// const taskValidator = require('../validators/task-validator');
+const {insertTaskValidator, updateTaskValidator} = require('../validators/task-validator');
 
 // ou
 const taskRouter = require('express').Router();
 
-taskRouter.get('/',taskController.getAll);
+taskRouter.get('/',authentication(), taskController.getAll);
 
 
-taskRouter.get('/:id', taskController.getById);
+taskRouter.get('/:id',authentication(),idValidator(), taskController.getById);
 
 
-taskRouter.get('/category/:categoryname', taskController.getByCategory);
+taskRouter.get('/category/:id', taskController.getByCategory);
 
 
-taskRouter.get('/user/:username', taskController.getByUser);
+taskRouter.get('/user/:id', authentication(), taskController.getByUser);
 
 
 
-taskRouter.post('/', taskController.Create);
+taskRouter.post('/',authentication(), bodyValidation(insertTaskValidator), taskController.Create);
 
 
-taskRouter.put('/:id', taskController.Update);
+taskRouter.put('/:id', authentication(), idValidator(),bodyValidation(updateTaskValidator), taskController.Update);
 
 
-taskRouter.delete('/:id', taskController.Delete);
+taskRouter.delete('/:id',authentication(["Admin"]), idValidator(), taskController.Delete);
 
 
 
